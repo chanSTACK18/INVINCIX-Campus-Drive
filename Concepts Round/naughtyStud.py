@@ -35,11 +35,11 @@ def nameCounter(n, list):
 
 def mostNaughty(n, list):
     mostNaughty = nameCounter(n, list)
-    least = 0
+    most = 0
     for i in range(n):
-        if mostNaughty[i] > mostNaughty[least]:
-            least = i
-    return list[least]
+        if mostNaughty[i] > mostNaughty[most]:
+            most = i
+    return list[most]
 
 def leastNaughty(n, list):
     leastNaughty = nameCounter(n, list)
