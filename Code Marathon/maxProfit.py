@@ -38,7 +38,6 @@ if __name__ == "__main__":
     # Example enter 3 transactions
     k = int(input("Enter the number of transactions: "))
     prices = [165, 177, 181, 178, 202, 177, 181, 180, 189]
-    sharesBought = input("Enter the number of shares bought: ")
     n = len(prices)
     print("Maximum profit is:",maxProfit(prices, n, k))
 
