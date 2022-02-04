@@ -11,39 +11,49 @@ You can only buy after you release and sell the share you have already purchased
 # Let us say we have to buy and sell on day 1, 2, 3 and 4
 # We can either buy on day 1 and sell on day 3 or buy on day 4 and sell on day 5
 
+def maxProfit(prices):
+    
+    # check if the list is empty
+    # if empty return 0
+    if len(prices) < 2:
+        return 0
+    
+    # initialize the max_profit to 0
+    # initialize the min_price_index to 0
+    min_price = 0
+    max_profit = 0
 
-def maxProfit(price, n, k):
+    for i in range(1, len(prices)):
 
-    # Table to store results of subproblems
-    # profit[t][i] stores maximum profit
-    # using at most t transactions up to
-    # day i (including day 1)
-    profit = [[0 for i in range(n + 1)] for j in range(k + 1)]
+        # initialize the min_price to the first element of the list
+        if prices[i-1] > prices[i]:
+            min_price = i
+        
+        # check if the current element is greater than the min_price
+        # if yes, then update the max_profit
+        # else, do nothing
+        if prices[i-1] <= prices[i] and (i +1 == len(prices) or prices[i+1] < prices[i]):
 
-    # Fill the table in bottom-up manner
-    # Note that the table is filled in a slightly
-    # day and for each day, we can either buy or sell
-    for i in range(1, k + 1):
-        prevDiff = float('-inf')
-        # For first transaction, we need to find the difference between
-        for j in range(1, n):
-            prevDiff = max(prevDiff,profit[i - 1][j - 1] -price[j - 1])
-            profit[i][j] = max(profit[i][j - 1],price[j] + prevDiff)
+            # update the max_profit
+            # print out bay and sell day
+            max_profit += (prices[i] - prices[min_price])
+            print(f"Shares bought at {min_price+1} and sold on Day {i+1} - {max_profit}")
 
-    return profit[k][n - 1]
+    return max_profit
 
-# Driver Code
 if __name__ == "__main__":
-    # k time given stack of n days
-    # Example enter 3 transactions
-    k = int(input("Enter the number of transactions: "))
+    # given list of prices
     prices = [165, 177, 181, 178, 202, 177, 181, 180, 189]
-    n = len(prices)
-    print("Maximum profit is:",maxProfit(prices, n, k))
+    print('Total Profit would be: ',maxProfit(prices))
 
-# Output:
+    # Output:
 
-# if k = 3 max profit is: 52
-# if k = 4 max profit is: 53
-
-# if k = 4 Scenario 2 would be best as it gives maximum profit
+    """
+    Shares bought at 1 and sold on Day 3 - 16
+    Shares bought at 4 and sold on Day 5 - 40
+    Shares bought at 6 and sold on Day 7 - 44
+    Shares bought at 8 and sold on Day 9 - 53
+    Total Profit would be:  53
+    """
+    # Above code will print the day on which the shares are bought and sold and the profit made
+    # So, Scenario 2 would be best as it gives maximum profit
