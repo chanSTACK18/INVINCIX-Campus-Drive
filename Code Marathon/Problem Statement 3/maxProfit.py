@@ -9,7 +9,7 @@ You can only buy after you release and sell the share you have already purchased
 # By doing most k transactions, we can get maximum profit
 # Let us understand the above recurrence in the following example
 # Let us say we have to buy and sell on day 1, 2, 3 and 4
-# We can either buy on day 1 and sell on day 3 or buy on day 4 and sell on day 5
+# We can either buy on day 1 and sell on day 3 or buy on day 4 and sell on day 5 and buy on day 6 and sell on day 7
 
 def maxProfit(prices):
     
